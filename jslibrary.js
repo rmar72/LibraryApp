@@ -66,7 +66,7 @@ Lib.prototype.removeBookByAuthor = function(authorName){
 };
 
 Lib.prototype.getRandomBook = function(){
-	
+	return this.bookArr.length <=0 ? null : this.bookArr[ Math.floor(Math.random()*this.bookArr.length) ];
 };
 
 
