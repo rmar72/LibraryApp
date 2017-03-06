@@ -71,7 +71,15 @@ Lib.prototype.getRandomBook = function(){
 
 
 Lib.prototype.getBookByTitle = function(title){
+	var reg = new RegExp(title, 'gi'),
+		arr1 = [];	
+	if(typeof title !== "string") return "Not a valid entry.";	
 
+	for(var i=0; i < this.bookArr.length; i++)
+		if(this.bookArr[i].title.match(reg))
+			arr1.push( this.bookArr[i] );
+	
+	return arr1;
 };
 
 Lib.prototype.getBooksByAuthor = function(authorName){
