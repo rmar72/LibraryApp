@@ -39,7 +39,16 @@ Lib.prototype.addBook = function(newBook){
 };
 
 Lib.prototype.removeBookByTitle = function(str){
-
+	var res = false;
+	if(typeof str !== "string") return "Not a valid entry.";
+	
+	for(var i=0; i < this.bookArr.length; i++){
+		if(this.bookArr[i].title == str){
+			this.bookArr.splice(i,1);
+			res = true; 
+		}	
+	}
+	return res ? true : false;
 };
 
 Lib.prototype.removeBookByAuthor = function(authorName){
