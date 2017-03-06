@@ -83,7 +83,16 @@ Lib.prototype.getBookByTitle = function(title){
 };
 
 Lib.prototype.getBooksByAuthor = function(authorName){
-
+	var reg = new RegExp(authorName, 'gi'),
+		arr1 = [];
+		
+	if(typeof authorName !== "string") return "Not a valid entry.";
+	
+	for(var i=0; i < this.bookArr.length; i++)
+		if(this.bookArr[i].author.match(reg))
+			arr1.push( this.bookArr[i] );	
+			
+	return arr1;
 };
 
 Lib.prototype.addBooks = function(){
