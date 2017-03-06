@@ -52,7 +52,17 @@ Lib.prototype.removeBookByTitle = function(str){
 };
 
 Lib.prototype.removeBookByAuthor = function(authorName){
-
+	var res = false;
+	if(typeof authorName !== "string") return "Not a valid entry.";
+	
+	for(var i=0; i < this.bookArr.length; i++){
+		if(this.bookArr[i].author == authorName){
+			this.bookArr.splice(i,1);
+			res = true;
+			i--; //makes up for the missing index that was removed
+		}	
+	}
+	return res ? true : false;
 };
 
 Lib.prototype.getRandomBook = function(){
