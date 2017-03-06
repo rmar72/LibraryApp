@@ -28,7 +28,14 @@ var jsLib = new Lib("JS303", "Denver", "CO");
 Lib.prototype.bookArr = [];
 
 Lib.prototype.addBook = function(newBook){
-
+	var res = true;
+	if(typeof newBook !== "object") return "Not a valid entry.";
+		
+	for(var i=0; i < this.bookArr.length; i++)
+		if(this.bookArr[i].title == newBook.title)
+			res = false;
+		
+	return res ? (this.bookArr.push(newBook), true) : false;
 };
 
 Lib.prototype.removeBookByTitle = function(str){
