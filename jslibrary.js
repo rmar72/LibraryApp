@@ -103,9 +103,13 @@ Lib.prototype.addBooks = function(books){
 };
 
 Lib.prototype.getAuthors = function(){
-
+	var arr1=[];
+	for(var i=0; i < this.bookArr.length; i++)
+		arr1.push(this.bookArr[i].author);
+	
+	return arr1;
 };
 
 Lib.prototype.getRandomAuthors = function(){
-	
-};
+	return this.bookArr.length <=0 ? null : this.bookArr[ Math.floor(Math.random()*this.bookArr.length) ].author;
+}
