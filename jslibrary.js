@@ -6,6 +6,7 @@ function Book(oData) {
 	this.numPages= oData.pages,
 	this.publishDate= oData.publishDate
 }
+
 // Instances of Book Class
 var book1 = new Book({title:"Eloquent JS", author: "Marijn Haverbeke", pages:270, publishDate:"03/20/2000"});
 var book2 = new Book({title:"JS The Good Parts", author: "Douglas Crockford", pages:300, publishDate:"07/25/2002"});
@@ -29,11 +30,11 @@ Lib.prototype.bookArr = [];
 
 Lib.prototype.addBook = function(newBook){
 	var res = true;
-	if(typeof newBook !== "object") return "Not a valid entry.";
 		
 	for(var i=0; i < this.bookArr.length; i++)
 		if(this.bookArr[i].title == newBook.title)
 			res = false;
+		
 		
 	return res ? (this.bookArr.push(newBook), true) : false;
 };
@@ -53,7 +54,7 @@ Lib.prototype.removeBookByTitle = function(str){
 
 Lib.prototype.removeBookByAuthor = function(authorName){
 	var res = false;
-	if(typeof authorName !== "string") return "Not a valid entry.";
+	if( typeof authorName !== "string" ) return "Not a valid entry.";
 	
 	for(var i=0; i < this.bookArr.length; i++){
 		if(this.bookArr[i].author == authorName){
@@ -69,10 +70,9 @@ Lib.prototype.getRandomBook = function(){
 	return this.bookArr.length <=0 ? null : this.bookArr[ Math.floor(Math.random()*this.bookArr.length) ];
 };
 
-
 Lib.prototype.getBookByTitle = function(title){
-	var reg = new RegExp(title, 'gi'),
-		arr1 = [];	
+	var reg = new RegExp(title, 'gi'), arr1 = [];
+	
 	if(typeof title !== "string") return "Not a valid entry.";	
 
 	for(var i=0; i < this.bookArr.length; i++)
@@ -83,24 +83,27 @@ Lib.prototype.getBookByTitle = function(title){
 };
 
 Lib.prototype.getBooksByAuthor = function(authorName){
-	var reg = new RegExp(authorName, 'gi'),
-		arr1 = [];
+	var reg = new RegExp(authorName, 'gi'), arr1 = [];
 		
 	if(typeof authorName !== "string") return "Not a valid entry.";
 	
 	for(var i=0; i < this.bookArr.length; i++)
-		if(this.bookArr[i].author.match(reg))
+		if( this.bookArr[i].author.match(reg) )
 			arr1.push( this.bookArr[i] );	
 			
 	return arr1;
 };
 
-Lib.prototype.addBooks = function(){
+Lib.prototype.addBooks = function(books){
+	var oldLength = this.bookArr.length;
+	for(var i=0; i < books.length; i++)
+		this.addBook(books[i]);
 	
+	return this.bookArr.length-oldLength;
 };
 
 Lib.prototype.getAuthors = function(){
-	
+
 };
 
 Lib.prototype.getRandomAuthors = function(){
