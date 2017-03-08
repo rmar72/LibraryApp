@@ -30,18 +30,23 @@ Lib.prototype.bookArr = [];
 
 Lib.prototype.addBook = function(newBook){
 	var res = true;
+	if(typeof newBook !== "object"){
+		return "Not a valid entry.";
+	}	
 		
-	for(var i=0; i < this.bookArr.length; i++)
-		if(this.bookArr[i].title == newBook.title)
+	for(var i=0; i < this.bookArr.length; i++){
+		if(this.bookArr[i].title == newBook.title){
 			res = false;
-		
-		
+		}
+	}	
 	return res ? (this.bookArr.push(newBook), true) : false;
-};
+}
 
 Lib.prototype.removeBookByTitle = function(str){
 	var res = false;
-	if(typeof str !== "string") return "Not a valid entry.";
+	if(typeof str !== "string"){
+		return "Not a valid entry.";
+	}
 	
 	for(var i=0; i < this.bookArr.length; i++){
 		if(this.bookArr[i].title == str){
@@ -50,11 +55,13 @@ Lib.prototype.removeBookByTitle = function(str){
 		}	
 	}
 	return res ? true : false;
-};
+}
 
 Lib.prototype.removeBookByAuthor = function(authorName){
 	var res = false;
-	if( typeof authorName !== "string" ) return "Not a valid entry.";
+	if( typeof authorName !== "string" ){
+		return "Not a valid entry.";
+	}	
 	
 	for(var i=0; i < this.bookArr.length; i++){
 		if(this.bookArr[i].author == authorName){
@@ -64,52 +71,62 @@ Lib.prototype.removeBookByAuthor = function(authorName){
 		}	
 	}
 	return res ? true : false;
-};
+}
 
 Lib.prototype.getRandomBook = function(){
 	return this.bookArr.length <=0 ? null : this.bookArr[ Math.floor(Math.random()*this.bookArr.length) ];
-};
+}
 
 Lib.prototype.getBookByTitle = function(title){
 	var reg = new RegExp(title, 'gi'), arr1 = [];
 	
-	if(typeof title !== "string") return "Not a valid entry.";	
+	if(typeof title !== "string"){
+		return "Not a valid entry.";
+	}
 
-	for(var i=0; i < this.bookArr.length; i++)
-		if(this.bookArr[i].title.match(reg))
+	for(var i=0; i < this.bookArr.length; i++){
+		if(this.bookArr[i].title.match(reg)){
 			arr1.push( this.bookArr[i] );
-	
+		}
+	}	
 	return arr1;
-};
+}
 
 Lib.prototype.getBooksByAuthor = function(authorName){
 	var reg = new RegExp(authorName, 'gi'), arr1 = [];
 		
-	if(typeof authorName !== "string") return "Not a valid entry.";
+	if(typeof authorName !== "string"){
+		return "Not a valid entry.";
+	}
 	
-	for(var i=0; i < this.bookArr.length; i++)
-		if( this.bookArr[i].author.match(reg) )
+	for(var i=0; i < this.bookArr.length; i++){
+		if( this.bookArr[i].author.match(reg) ){
 			arr1.push( this.bookArr[i] );	
-			
+		}
+	}
 	return arr1;
-};
+}
 
 Lib.prototype.addBooks = function(books){
 	var oldLength = this.bookArr.length;
-	for(var i=0; i < books.length; i++)
+	for(var i=0; i < books.length; i++){
 		this.addBook(books[i]);
-	
+	}
 	return this.bookArr.length-oldLength;
-};
+}
 
 Lib.prototype.getAuthors = function(){
-	var arr1=[];
-	for(var i=0; i < this.bookArr.length; i++)
-		arr1.push(this.bookArr[i].author);
+	var arr1 = [];
 	
+	for(var i=0; i < this.bookArr.length; i++){
+		var oBookAuthor = this.bookArr[i].author;
+		if(arr1.indexOf(oBookAuthor) <= -1){
+			arr1.push(oBookAuthor);
+		}
+	}	
 	return arr1;
-};
+}
 
 Lib.prototype.getRandomAuthors = function(){
-	return this.bookArr.length <=0 ? null : this.bookArr[ Math.floor(Math.random()*this.bookArr.length) ].author;
+	return this.bookArr.length <= 0 ? null : this.bookArr[ Math.floor(Math.random()*this.bookArr.length) ].author;
 }
