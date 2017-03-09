@@ -1,5 +1,5 @@
 
-//=============Book Class=============//
+//=============Book Class==============//
 function Book(oData) {
 	this.title= oData.title,
 	this.author= oData.author,
