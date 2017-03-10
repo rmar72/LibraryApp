@@ -1,11 +1,11 @@
-
-//=============Book Class=============//
+//=============Book Class==============//
 function Book(oData) {
 	this.title= oData.title,
 	this.author= oData.author,
 	this.numPages= oData.pages,
 	this.publishDate= oData.publishDate
 }
+
 // Instances of Book Class
 var book1 = new Book({title:"Eloquent JS", author: "Marijn Haverbeke", pages:270, publishDate:"03/20/2000"});
 var book2 = new Book({title:"JS The Good Parts", author: "Douglas Crockford", pages:300, publishDate:"07/25/2002"});
@@ -29,37 +29,36 @@ Lib.prototype.bookArr = [];
 
 Lib.prototype.addBook = function(newBook){
 
-};
+}
 
 Lib.prototype.removeBookByTitle = function(str){
 
-};
+}
 
 Lib.prototype.removeBookByAuthor = function(authorName){
 
-};
+}
 
 Lib.prototype.getRandomBook = function(){
-	
-};
 
+}
 
 Lib.prototype.getBookByTitle = function(title){
 
-};
+}
 
 Lib.prototype.getBooksByAuthor = function(authorName){
 
-};
+}
 
-Lib.prototype.addBooks = function(){
-	
-};
+Lib.prototype.addBooks = function(books){
+
+}
 
 Lib.prototype.getAuthors = function(){
-	
-};
+
+}
 
 Lib.prototype.getRandomAuthors = function(){
-	
-};
+
+}
